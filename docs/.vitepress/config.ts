@@ -19,7 +19,7 @@ const description =
 
 export default defineConfig({
 	lang: 'en-US',
-	title: 'ElysiaJS',
+	title: 'blazeJS',
 	// description,
 	ignoreDeadLinks: true,
 	lastUpdated: true,
@@ -63,7 +63,7 @@ export default defineConfig({
 			process.env.NODE_ENV === 'production' ? llmstxt() : [],
 			process.env.ANALYZE === 'true' ? analyzer() : [],
 			// GitChangelog({
-			// 	repoURL: () => 'https://github.com/elysiajs/documentation',
+			// 	repoURL: () => 'https://github.com/blazejs/documentation',
 			// 	mapAuthors: [
 			// 		{
 			// 			mapByEmailAliases: ['saltyaom@gmail.com'],
@@ -120,14 +120,14 @@ export default defineConfig({
 			'link',
 			{
 				rel: 'icon',
-				href: '/assets/elysia.png'
+				href: '/assets/blaze.png'
 			}
 		],
 		[
 			'meta',
 			{
 				property: 'og:image',
-				content: 'https://elysiajs.com/assets/cover.jpg'
+				content: 'https://blazejs.com/assets/cover.jpg'
 			}
 		],
 		[
@@ -155,14 +155,14 @@ export default defineConfig({
 			'meta',
 			{
 				property: 'twitter:image',
-				content: 'https://elysiajs.com/assets/cover.jpg'
+				content: 'https://blazejs.com/assets/cover.jpg'
 			}
 		],
 		[
 			'meta',
 			{
 				property: 'og:title',
-				content: 'ElysiaJS'
+				content: 'blazeJS'
 			}
 		],
 		[
@@ -180,7 +180,7 @@ export default defineConfig({
 				detailedView: true
 			}
 		},
-		logo: '/assets/elysia.svg',
+		logo: '/assets/blaze.svg',
 		nav: [
 			{
 				text: 'Cheat Sheet',
@@ -451,14 +451,14 @@ export default defineConfig({
 			label: 'Outline'
 		},
 		socialLinks: [
-			{ icon: 'github', link: 'https://github.com/elysiajs/elysia' },
-			{ icon: 'twitter', link: 'https://twitter.com/elysiajs' },
+			{ icon: 'github', link: 'https://github.com/blazejs/blaze' },
+			{ icon: 'twitter', link: 'https://twitter.com/blazejs' },
 			{ icon: 'discord', link: 'https://discord.gg/eaFJ2KDJck' }
 		],
 		editLink: {
 			text: 'Edit this page on GitHub',
 			pattern:
-				'https://github.com/elysiajs/documentation/edit/main/docs/:path'
+				'https://github.com/blazejs/documentation/edit/main/docs/:path'
 		}
 	}
 })
