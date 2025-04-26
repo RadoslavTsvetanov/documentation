@@ -1,29 +1,29 @@
 ---
-title: Cheat Sheet (Elysia by example) - ElysiaJS
+title: Cheat Sheet (blaze by example) - blazeJS
 head:
   - - meta
     - property: 'og:title'
-      content: Cheat Sheet (Elysia by example) - ElysiaJS
+      content: Cheat Sheet (blaze by example) - blazeJS
 
   - - meta
     - name: 'description'
-      content: Elysia's cheat sheet in summary and how it work with "Elysia by example"
+      content: blaze's cheat sheet in summary and how it work with "blaze by example"
 
   - - meta
     - property: 'og:description'
-      content: Elysia's cheat sheet in summary and how it work with "Elysia by example"
+      content: blaze's cheat sheet in summary and how it work with "blaze by example"
 ---
 
 # Cheat Sheet
-Here are a quick overview for a common Elysia patterns
+Here are a quick overview for a common blaze patterns
 
 ## Hello World
 A simple hello world
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/', () => 'Hello World')
     .listen(3000)
 ```
@@ -34,9 +34,9 @@ Define route using custom HTTP methods/verbs
 See [Route](/essential/route.html#custom-method)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/hi', () => 'Hi')
     .post('/hi', () => 'From Post')
     .put('/hi', () => 'From Put')
@@ -50,26 +50,26 @@ Using dynamic path parameter
 See [Path](/essential/route.html#path-type)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/id/:id', ({ params: { id } }) => id)
     .get('/rest/*', () => 'Rest')
     .listen(3000)
 ```
 
 ## Return JSON
-Elysia converts response to JSON automatically
+blaze converts response to JSON automatically
 
 See [Handler](/essential/handler.html)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/json', () => {
         return {
-            hello: 'Elysia'
+            hello: 'blaze'
         }
     })
     .listen(3000)
@@ -81,12 +81,12 @@ A file can be return in as formdata response
 The response must be a 1-level deep object
 
 ```typescript
-import { Elysia, file } from 'elysia'
+import { blaze, file } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/json', () => {
         return {
-            hello: 'Elysia',
+            hello: 'blaze',
             image: file('public/cat.jpg')
         }
     })
@@ -99,11 +99,11 @@ Set a custom header and a status code
 See [Handler](/essential/handler.html)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/', ({ set, error }) => {
-        set.headers['x-powered-by'] = 'Elysia'
+        set.headers['x-powered-by'] = 'blaze'
 
         return error(418, "I'm a teapot")
     })
@@ -116,9 +116,9 @@ Define a prefix once for sub routes
 See [Group](/essential/route.html#group)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get("/", () => "Hi")
     .group("/auth", app => {
         return app
@@ -135,9 +135,9 @@ Enforce a data type of a route
 See [Validation](/essential/validation)
 
 ```typescript
-import { Elysia, t } from 'elysia'
+import { blaze, t } from 'blaze'
 
-new Elysia()
+new blaze()
     .post('/mirror', ({ body: { username } }) => username, {
         body: t.Object({
             username: t.String(),
@@ -151,9 +151,9 @@ new Elysia()
 See [Validation#file](/essential/validation#file)
 
 ```typescript twoslash
-import { Elysia, t } from 'elysia'
+import { blaze, t } from 'blaze'
 
-new Elysia()
+new blaze()
 	.post('/body', ({ body }) => body, {
                     // ^?
 
@@ -170,14 +170,14 @@ new Elysia()
 ```
 
 ## Lifecycle Hook
-Intercept an Elysia event in order
+Intercept an blaze event in order
 
 See [Lifecycle](/essential/life-cycle.html)
 
 ```typescript
-import { Elysia, t } from 'elysia'
+import { blaze, t } from 'blaze'
 
-new Elysia()
+new blaze()
     .onRequest(() => {
         console.log('On request')
     })
@@ -203,9 +203,9 @@ See [Scope](/essential/plugin.html#scope)
 
 ```typescript twoslash
 // @errors: 2345
-import { Elysia, t } from 'elysia'
+import { blaze, t } from 'blaze'
 
-new Elysia()
+new blaze()
     .guard({
         response: t.String()
     }, (app) => app
@@ -222,9 +222,9 @@ Add custom variable to route context
 See [Context](/essential/handler.html#context)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .state('version', 1)
     .decorate('getDate', () => Date.now())
     .get('/version', ({
@@ -240,9 +240,9 @@ Redirect a response
 See [Handler](/essential/handler.html#redirect)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .get('/', () => 'hi')
     .get('/redirect', ({ redirect }) => {
         return redirect('/')
@@ -256,13 +256,13 @@ Create a separate instance
 See [Plugin](/essential/plugin)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-const plugin = new Elysia()
+const plugin = new blaze()
     .state('plugin-version', 1)
     .get('/hi', () => 'hi')
 
-new Elysia()
+new blaze()
     .use(plugin)
     .get('/version', ({ store }) => store['plugin-version'])
     .listen(3000)
@@ -274,9 +274,9 @@ Create a realtime connection using Web Socket
 See [Web Socket](/patterns/websocket)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .ws('/ping', {
         message(ws, message) {
             ws.send('hello ' + message)
@@ -291,10 +291,10 @@ Create interactive documentation using Scalar (or optionally Swagger)
 See [swagger](/plugins/swagger.html)
 
 ```typescript
-import { Elysia } from 'elysia'
-import { swagger } from '@elysiajs/swagger'
+import { blaze } from 'blaze'
+import { swagger } from '@blazejs/swagger'
 
-const app = new Elysia()
+const app = new blaze()
     .use(swagger())
     .listen(3000)
 
@@ -302,18 +302,18 @@ console.log(`View documentation at "${app.server!.url}swagger" in your browser`)
 ```
 
 ## Unit Test
-Write a unit test of your Elysia app
+Write a unit test of your blaze app
 
 See [Unit Test](/patterns/unit-test)
 
 ```typescript
 // test/index.test.ts
 import { describe, expect, it } from 'bun:test'
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-describe('Elysia', () => {
+describe('blaze', () => {
     it('return a response', async () => {
-        const app = new Elysia().get('/', () => 'hi')
+        const app = new blaze().get('/', () => 'hi')
 
         const response = await app
             .handle(new Request('http://localhost/'))
@@ -330,9 +330,9 @@ Create custom logic for parsing body
 See [Parse](/essential/life-cycle.html#parse)
 
 ```typescript
-import { Elysia } from 'elysia'
+import { blaze } from 'blaze'
 
-new Elysia()
+new blaze()
     .onParse(({ request, contentType }) => {
         if (contentType === 'application/custom-type')
             return request.text()
@@ -345,10 +345,10 @@ Create a custom GraphQL server using GraphQL Yoga or Apollo
 See [GraphQL Yoga](/plugins/graphql-yoga)
 
 ```typescript
-import { Elysia } from 'elysia'
-import { yoga } from '@elysiajs/graphql-yoga'
+import { blaze } from 'blaze'
+import { yoga } from '@blazejs/graphql-yoga'
 
-const app = new Elysia()
+const app = new blaze()
     .use(
         yoga({
             typeDefs: /* GraphQL */`
@@ -358,7 +358,7 @@ const app = new Elysia()
             `,
             resolvers: {
                 Query: {
-                    hi: () => 'Hello from Elysia'
+                    hi: () => 'Hello from blaze'
                 }
             }
         })
